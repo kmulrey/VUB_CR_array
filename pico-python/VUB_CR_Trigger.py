@@ -23,7 +23,10 @@ preTriggerSamples = int( samples * preTriggerFraction )
 postTriggerSamples = samples - preTriggerSamples
 
 # First, we are going to create the folder if it isn't there already
-mydir = os.path.join( os.getcwd(), datetime.now().strftime('%Y-%m-%d'))
+# The external drive folder
+mydir = /mnt/extdrive
+mydir = os.path.join( mydir, datetime.now().strftime('%Y-%m-%d') )
+#mydir = os.path.join( os.getcwd(), datetime.now().strftime('%Y-%m-%d'))
 if not os.path.isdir(mydir): os.makedirs(mydir)
 
 # Create handle and status ready for use
@@ -61,9 +64,9 @@ maxSamples = ctypes.c_int32()           # Return info
 status["GetTimebase"] = ps.ps2000aGetTimebase2(handle, timebase, samples, ctypes.byref(timeIntervalns), 1, ctypes.byref(maxSamples), segmentIndex)
 assert_pico_ok(status["GetTimebase"])
 
-print(samples)
-print(timeIntervalns)
-print(maxSamples.value)
+print( "The time step between samples is " + str(timeIntervalns) )
+print( "The maximum amount of samples in this configuration is" + str(maxSamples.value) )
+print( "The requested amount for samples per event is: " + str(samples))
 
 # Find the max ADC count (For the ADC <-> mV conversion)
 # This is obtained from the PicoScope itself
