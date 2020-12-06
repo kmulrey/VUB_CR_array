@@ -24,7 +24,7 @@ postTriggerSamples = samples - preTriggerSamples
 
 # First, we are going to create the folder if it isn't there already
 # The external drive folder
-mydir = /mnt/extdrive
+mydir = "/mnt/extdrive"
 mydir = os.path.join( mydir, datetime.now().strftime('%Y-%m-%d') )
 #mydir = os.path.join( os.getcwd(), datetime.now().strftime('%Y-%m-%d'))
 if not os.path.isdir(mydir): os.makedirs(mydir)
